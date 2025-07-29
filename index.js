@@ -3,12 +3,12 @@ import express from "express";
 const app = express();
 app.use(express.json());
 
-// === Your real details ===
-const FULL_NAME = "pushpinder_singh"; // lowercase with underscore
-const DOB = "07082005"; // ddmmyyyy
+
+const FULL_NAME = "PushPINDER_Singh"; 
+const DOB = "07082005"; 
 const EMAIL = "pushpinder693.be22@chitkara.edu.in";
 const ROLL_NUMBER = "2210990693";
-// =========================
+
 
 app.post("/bfhl", (req, res) => {
     try {
@@ -29,7 +29,7 @@ app.post("/bfhl", (req, res) => {
         let lettersOnly = [];
 
         data.forEach(item => {
-            if (/^\d+$/.test(item)) { // numeric string
+            if (/^\d+$/.test(item)) { 
                 let num = parseInt(item);
                 sum += num;
                 if (num % 2 === 0) {
@@ -38,12 +38,12 @@ app.post("/bfhl", (req, res) => {
                     odd_numbers.push(item);
                 }
             }
-            else if (/^[a-zA-Z]+$/.test(item)) { // only alphabets
+            else if (/^[a-zA-Z]+$/.test(item)) { 
                 alphabets.push(item.toUpperCase());
-                // push each letter individually for concat_string
+             
                 item.split("").forEach(ch => lettersOnly.push(ch));
             }
-            else { // special characters
+            else { 
                 special_characters.push(item);
             }
         });
@@ -53,7 +53,7 @@ app.post("/bfhl", (req, res) => {
             i % 2 === 0 ? ch.toUpperCase() : ch.toLowerCase()
         ).join("");
 
-        // Send minified JSON so arrays are always on one line
+    
         res.setHeader("Content-Type", "application/json");
         res.send(JSON.stringify({
             is_success: true,
